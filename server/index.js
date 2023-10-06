@@ -9,7 +9,7 @@ const userRouter = require("./routers/userRouter");
 const sportsRouter = require("./routers/sportsRouter");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-dotenv.config(".env");
+dotenv.config("./.env");
 // middlewares
 app.use(express.json());
 app.use(cookieParser());
