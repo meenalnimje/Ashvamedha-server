@@ -8,7 +8,7 @@ const matchRouter = require("./routers/matchRouter");
 const userRouter = require("./routers/userRouter");
 const sportsRouter = require("./routers/sportsRouter");
 const cookieParser = require("cookie-parser");
-const cors = require("cors");
+const cors = require("cors"); 
 dotenv.config("./.env");
 // middlewares
 app.use(express.json());
@@ -24,7 +24,7 @@ app.use("/admin", adminRouter);
 app.use("/college", collegeRouter);
 app.use("/match", matchRouter);
 app.use("/sport", sportsRouter);
-const port = process.env.PORT;
+const port = process.env.PORT || 4001;
 dbConnect();
 app.listen(port, () => {
   console.log(`server has started at the port ${port}`);
