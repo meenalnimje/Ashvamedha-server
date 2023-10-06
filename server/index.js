@@ -8,7 +8,7 @@ const matchRouter = require("./routers/matchRouter");
 const userRouter = require("./routers/userRouter");
 const sportsRouter = require("./routers/sportsRouter");
 const cookieParser = require("cookie-parser");
-const cors = require("cors"); 
+const cors = require("cors");
 dotenv.config("./.env");
 // middlewares
 app.use(express.json());
@@ -19,6 +19,9 @@ app.use(
     origin: `${process.env.BASE_URL}`,
   })
 );
+app.get("/", (req, res) => {
+  res.status(201).send("server deployed");
+});
 app.use("/user", userRouter);
 app.use("/admin", adminRouter);
 app.use("/college", collegeRouter);
