@@ -8,27 +8,25 @@ const matchRouter = require("./routers/matchRouter");
 const userRouter = require("./routers/userRouter");
 const sportsRouter = require("./routers/sportsRouter");
 const cookieParser = require("cookie-parser");
+const path = require("path");
 const cors = require("cors");
 dotenv.config("./.env");
 // middlewares
 app.use(express.json());
 app.use(cookieParser());
+dbConnect();
 app.use(
   cors({
     credentials: true,
-    origin: `${process.env.BASE_URL}`,
+    origin: "http://localhost:3000",
   })
 );
-app.get("/", (req, res) => {
-  res.status(201).send("server deployed");
-});
 app.use("/user", userRouter);
 app.use("/admin", adminRouter);
 app.use("/college", collegeRouter);
 app.use("/match", matchRouter);
 app.use("/sport", sportsRouter);
-const port = process.env.PORT || 4001;
-dbConnect();
+const port = process.env.PORT || 4003;
 app.listen(port, () => {
   console.log(`server has started at the port ${port}`);
 });
