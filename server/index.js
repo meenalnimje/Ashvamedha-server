@@ -15,7 +15,7 @@ dotenv.config("./.env");
 app.use(express.json());
 app.use(cookieParser());
 dbConnect();
-if (process.env.NODE_ENV == "production") {
+if (process.env.NODE_ENV == "productions") {
   app.use(
     cors({
       credentials: true,
