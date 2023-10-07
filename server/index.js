@@ -15,12 +15,21 @@ dotenv.config("./.env");
 app.use(express.json());
 app.use(cookieParser());
 dbConnect();
-app.use(
-  cors({
-    credentials: true,
-    origin: "http://localhost:3000",
-  })
-);
+if (process.env.NODE_ENV == "production") {
+  app.use(
+    cors({
+      credentials: true,
+      origin: "https://deft-florentine-a4802f.netlify.app",
+    })
+  );
+} else {
+  app.use(
+    cors({
+      credentials: true,
+      origin: "http://localhost:3000",
+    })
+  );
+}
 app.use("/user", userRouter);
 app.use("/admin", adminRouter);
 app.use("/college", collegeRouter);
