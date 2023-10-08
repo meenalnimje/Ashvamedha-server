@@ -20,7 +20,7 @@ if (process.env.NODE_ENV == "productions") {
   app.use((req, res, next) => {
     const allowedOrigins = [
       "http://localhost:3000",
-      "https://glittering-sopapillas-ee9067.netlify.app",
+      "https://curious-duckanoo-67fc55.netlify.app",
     ];
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
