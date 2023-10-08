@@ -3,7 +3,7 @@ const photo = require("../models/photo");
 const { success } = require("../utils/responseWrapper");
 const uploadImage = async (req, res) => {
   try {
-    const { image, folderName } = req.body;
+    const { image, folderName, name } = req.body;
     const cloudImg = await cloudinary.uploader.upload(image, {
       folder: folderName,
     });
@@ -13,6 +13,7 @@ const uploadImage = async (req, res) => {
         publicId: cloudImg.public_id,
         url: cloudImg.secure_url,
       },
+      name,
     });
     return res.json(success(201, { imgToUpload }));
   } catch (e) {
