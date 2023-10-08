@@ -13,7 +13,7 @@ const cors = require("cors");
 
 dotenv.config("./.env");
 // middlewares
-app.use(express.json());
+app.use(express.json({ limit: "10mb" }));
 app.use(cookieParser());
 dbConnect();
 if (process.env.NODE_ENV == "productions") {
