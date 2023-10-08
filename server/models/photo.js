@@ -8,5 +8,8 @@ const photoSchema = mongoose.Schema({
     publicId: String,
     url: String,
   },
+  name: {
+    type: String,
+  },
 });
 module.exports = mongoose.model("photo", photoSchema);
