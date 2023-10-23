@@ -1,12 +1,8 @@
 const router = require("express").Router();
 const requireUser = require("../middlewares/requireUser");
-const sportsController = require("../controllers/sportsController");
-router.post("/getlivescore", sportsController.getLiveScore);
-router.post("/setlivescore", requireUser, sportsController.setLiveScore);
-router.put("/updatelivescore", requireUser, sportsController.updateLiveScore);
-router.delete(
-  "/deletelivescore",
-  requireUser,
-  sportsController.deleteLiveScore
-);
+const scoreController = require("../controllers/scoreController");
+router.post("/getlivescore", scoreController.getLiveScore);
+router.post("/setlivescore", requireUser, scoreController.setLiveScore);
+router.put("/updatelivescore", requireUser, scoreController.updateLiveScore);
+router.delete("/deletelivescore", requireUser, scoreController.deleteLiveScore);
 module.exports = router;

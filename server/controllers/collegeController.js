@@ -1,4 +1,4 @@
-const Sports = require("../models/sports");
+const Sports = require("../models/sport");
 const { success, error } = require("../utils/responseWrapper");
 const { mapMatchResultOutput } = require("../utils/utils");
 const collegePointTable = async (req, res) => {
