@@ -1,4 +1,4 @@
-const Sports = require("../models/sport");
+const Sports = require("../models/sports");
 const { success, error } = require("../utils/responseWrapper");
 const updateMatchResult = async (req, res) => {
   // point table in this requested sport
