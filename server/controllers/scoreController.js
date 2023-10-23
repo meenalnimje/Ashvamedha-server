@@ -1,46 +1,3 @@
-// const Sports = require("../models/sports");
-// const { success, error } = require("../utils/responseWrapper");
-// const { mapMatchResultOutput } = require("../utils/utils");
-// const sportPointTable = async (req, res) => {
-//   // point table in this requested sport
-//   try {
-//     // like collegeController only just add sportName also for filter
-//     const { collegeName, sportName, category } = req.body;
-//     const sportInfo = await Sports.find({
-//       collegeWon: { $eq: collegeName },
-//       sportName,
-//       category,
-//     });
-//     const modifiedResult = sportInfo.map((item) => mapMatchResultOutput(item));
-//     return res.send(success(201, { modifiedResult }));
-//   } catch (e) {
-//     console.log("this is the error from register side", e);
-//     return res.send(error(500, e.message));
-//   }
-// };
-// const sportTotalScore = async (req, res) => {
-//   // point table in this requested sport
-//   try {
-//     // like collegeController only just add sportName also for filter
-//     const { collegeName, sportName, category } = req.body;
-//     const sportInfo = await Sports.find({
-//       collegeWon: { $eq: collegeName },
-//       sportName,
-//       category,
-//     });
-//     let score = 0;
-//     sportInfo.forEach((element) => (score = score + element.point));
-//     return res.send(success(201, { score }));
-//   } catch (e) {
-//     console.log("this is the error from register side", e);
-//     return res.send(error(500, e.message));
-//   }
-// };
-// module.exports = {
-//   sportPointTable,
-//   sportTotalScore,
-// };
-
 const liveScore = require("../models/liveScore");
 const { success, error } = require("../utils/responseWrapper");
 const setLiveScore = async (req, res) => {
@@ -88,18 +45,29 @@ const setLiveScore = async (req, res) => {
 };
 const updateLiveScore = async (req, res) => {
   try {
-    const { matchId, set, college1Score, college2Score } = req.body;
-    if (!matchId) {
-      return res.send(error(400, "match id required for update score"));
+    const { matchname, sportname, set, college1Score, college2Score } =
+      req.body;
+    if (!matchname || !sportname) {
+      return res.send(
+        error(
+          400,
+          "match name and sports name is required required for update score"
+        )
+      );
     }
-    const match = await liveScore.findById({ _id: matchId });
+    const match = await liveScore.find({
+      matchName: matchname,
+      sportName: sportname,
+    });
     if (!match) {
       return res.send(404, "match score not found, set the score");
     }
-    match.college1Score = college1Score;
-    match.college2Score = college2Score;
-    match.set = set;
-    await match.save();
+    match.forEach(async (match) => {
+      match.college1Score = college1Score;
+      match.college2Score = college2Score;
+      match.set = set;
+      await match.save();
+    });
     return res.send(success(200, `score updated ${match}`));
   } catch (e) {
     console.log("this is the error from updateLiveScore side", e);
