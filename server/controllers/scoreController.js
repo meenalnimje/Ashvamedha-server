@@ -13,6 +13,8 @@ const setLiveScore = async (req, res) => {
       editedBy,
       set,
       location,
+      college1Logo,
+      college2Logo,
     } = req.body;
     if (
       !matchName ||
@@ -24,15 +26,19 @@ const setLiveScore = async (req, res) => {
       !editedBy ||
       !category ||
       !set ||
-      !location
+      !location ||
+      !college1Logo ||
+      !college2Logo
     ) {
       return res.send(error(400, "All fields are required"));
     }
     const livescore = await liveScore.create({
       college1Name,
+      college1Logo,
       college1Score,
       college2Name,
       college2Score,
+      college2Logo,
       matchName,
       category,
       sportName,

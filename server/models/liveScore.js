@@ -8,12 +8,20 @@ const liveScoreSchema = mongoose.Schema({
     type: Number,
     require: true,
   },
+  college1Logo: {
+    type: String,
+    require: true,
+  },
   college2Name: {
     type: String,
     require: true,
   },
   college2Score: {
     type: Number,
+    require: true,
+  },
+  college2Logo: {
+    type: String,
     require: true,
   },
   matchName: {
