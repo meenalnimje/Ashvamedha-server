@@ -32,6 +32,10 @@ const liveScoreSchema = mongoose.Schema({
     type: String,
     require: true,
   },
+  location: {
+    type: String,
+    require: true,
+  },
   set: {
     type: String,
     require: true,

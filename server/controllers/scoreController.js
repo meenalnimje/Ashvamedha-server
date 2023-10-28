@@ -12,6 +12,7 @@ const setLiveScore = async (req, res) => {
       sportName,
       editedBy,
       set,
+      location,
     } = req.body;
     if (
       !matchName ||
@@ -22,7 +23,8 @@ const setLiveScore = async (req, res) => {
       !college2Score ||
       !editedBy ||
       !category ||
-      !set
+      !set ||
+      !location
     ) {
       return res.send(error(400, "All fields are required"));
     }
@@ -36,6 +38,7 @@ const setLiveScore = async (req, res) => {
       sportName,
       editedBy,
       set,
+      location,
     });
     return res.send(success(201, `live score set ${livescore}`));
   } catch (e) {
