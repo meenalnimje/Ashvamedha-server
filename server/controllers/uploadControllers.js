@@ -30,4 +30,13 @@ const getPhotos = async (req, res) => {
     console.log("this error is from get photos side ", e);
   }
 };
-module.exports = { uploadImage, getPhotos };
+const getPhotosByName = async (req, res) => {
+  try {
+    const { folderName, name } = req.body;
+    const photos = await photo.find({ folderName, name });
+    res.send(success(200, photos));
+  } catch (e) {
+    console.log("this error is from get photos side ", e);
+  }
+};
+module.exports = { uploadImage, getPhotos, getPhotosByName };
